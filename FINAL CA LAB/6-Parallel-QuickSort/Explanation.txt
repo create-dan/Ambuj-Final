@@ -1,0 +1,19 @@
+mpicc -g -Wall -o sort program.c -lm
+mpiexec -n 2 ./sort input.txt output.txt
+
+
+Quicksort says:
+-Partition the list according to a random pivot.
+-Quicksort the left half-list.
+-Quicksort the right half-list.
+So a parallel version comes from the realization that
+the two sorts are independent of one another after the
+partition:
+-Partition the list according to a random pivot.
+-Quicksort the two half-lists in parallel.
+This is not typical quicksort; it is NlogN in memory
+and does not sort the argument lyst as a side effect,
+but rather returns a sorted version of the lyst.
+Using a shared memory array results in locks.  Even
+with the additional memory, there is usually a
+reasonable speedup here.

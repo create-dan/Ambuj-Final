@@ -1,0 +1,41 @@
+Ideas to parallelize image compression: 
+	a) Vector quantization is clustring a vectors of pixels using kmean algorithm.
+		____________
+		|	    |
+		|128vectors |
+		|	    |
+		-------------
+		|	    |
+		|128vectors |
+		|	    |
+		-------------
+		|           |
+		 (Codebook)
+	
+	b) Dividing image in blocks of 4*4 (or of given size) is also can be made parallaly.
+		(In kmean algorithm we manually decides two or more centroid values and compute values of all vectors around it)
+		-------------
+		|   |   |   |
+	(4*4)	|   |   |   | (Image is divided in blocks of size 4*4 or of given size)
+		-------------
+		|   |   |   |
+		|   |   |   |
+		-------------
+		|   |   |   |
+		|   |   |   | (4*4)
+		-------------
+	b) Clustering of number of vectors is independent process and hence it can be computed parallaly.
+	c) Mapping of those computed centroid vectors to real image is also independent one.
+
+
+
+
+    The code starts by importing the necessary libraries and creating a function to create an image.
+ The code then creates an image with dimensions of w x h x d, which is the size of the original image.
+ Next, it creates a label index for each pixel in the new image that corresponds to its position on the original image.
+ It then loops through all pixels in both images and stores their corresponding values in a list called varL.
+ Finally, it returns this newly created array as an output variable named "image".
+ The next line imports KMeans from sklearn library and uses it to fit six clusters into our data set using random initialization method (random_state=1).
+ After fitting our data set, we can use predict() function to find out what cluster each sample belongs to.
+ The code attempts to show the outcome of reducing an image by a factor of 255.
+ The code above has two parts: 1) The original image (bird.gif) and 2) A reduced image that is reduced by a factor of 255 (reduced_image).
